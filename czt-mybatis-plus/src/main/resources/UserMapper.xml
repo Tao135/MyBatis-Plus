@@ -4,16 +4,16 @@
                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.czt.mapper.UserMapper">
-    <resultMap id="findResult" type="cn.czt.pojo.User">
-        <id column="id" property="id"/>
-        <result column="user_name" property="userName"/>
-        <result column="password" property="password"/>
-        <result column="name" property="name"/>
-        <result column="age" property="age"/>
-        <result column="email" property="email"/>
-    </resultMap>
+<!--    <resultMap id="findResult" type="cn.czt.pojo.User">-->
+<!--        <id column="id" property="id"/>-->
+<!--        <result column="user_name" property="userName"/>-->
+<!--        <result column="password" property="password"/>-->
+<!--        <result column="name" property="name"/>-->
+<!--        <result column="age" property="age"/>-->
+<!--        <result column="email" property="email"/>-->
+<!--    </resultMap>-->
 
-    <select id="findAll" resultType="cn.czt.pojo.User" resultMap="findResult">
+    <select id="findAll" resultType="cn.czt.pojo.User">
         select * from tb_user
     </select>
 </mapper>
