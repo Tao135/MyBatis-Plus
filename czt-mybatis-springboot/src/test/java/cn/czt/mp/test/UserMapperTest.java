@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -73,6 +76,47 @@ public class UserMapperTest {
         .eq("user_name","zhangsan");         //更新的条件
 
         int result = this.userMapper.update(null, wrapper);
+        System.out.println("result => " + result);
+    }
+
+    @Test
+    public void test6(){
+        int result = this.userMapper.deleteById(2);
+        System.out.println("result => " + result);
+    }
+
+    @Test
+    public void test7(){
+        Map<String,Object> map = new HashMap<>();
+        map.put("user_name","zhangsan");
+        map.put("password","123456");
+
+        //根据map删除数据，多条件之间是and关系
+        int result = this.userMapper.deleteByMap(map);
+        System.out.println("result => " + result);
+    }
+
+    @Test
+    public void test8(){
+        //用法一：
+//        QueryWrapper<User> wrapper = new QueryWrapper<>();
+//        wrapper.eq("user_name","zhangsan").eq("password","123456");
+
+        //用法二：
+        User user = new User();
+        user.setPassword("123456");
+        user.setUserName("Tao");
+
+        QueryWrapper<User> wrapper = new QueryWrapper<>(user);
+
+        //根据包装条件进行删除
+        int result = this.userMapper.delete(wrapper);
+        System.out.println("result => " + result);
+    }
+
+    @Test
+    public void test9(){
+        int result = this.userMapper.deleteBatchIds(Arrays.asList(3L, 4L));
         System.out.println("result => " + result);
     }
 }
