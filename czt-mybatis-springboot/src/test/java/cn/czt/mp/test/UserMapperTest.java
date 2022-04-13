@@ -4,6 +4,8 @@ import cn.czt.mp.mapper.UserMapper;
 import cn.czt.mp.pojo.User;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,5 +120,69 @@ public class UserMapperTest {
     public void test9(){
         int result = this.userMapper.deleteBatchIds(Arrays.asList(3L, 4L));
         System.out.println("result => " + result);
+    }
+
+    @Test
+    public void test10(){
+        User user = this.userMapper.selectById(3L);
+        System.out.println(user);
+    }
+
+    @Test
+    public void test11(){
+        List<User> users = this.userMapper.selectBatchIds(Arrays.asList(5L,7L));
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
+    @Test
+    public void test12(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        //查询条件
+        wrapper.eq("user_name","zhangsan");
+        //查询数据超过一条时，会抛出异常
+        User user = this.userMapper.selectOne(wrapper);
+        System.out.println(user);
+    }
+
+    @Test
+    public void test13(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.gt("age","20");     //条件：age大于20
+
+        //根据条件查询条数
+        Integer count = this.userMapper.selectCount(wrapper);
+        System.out.println(count);
+    }
+
+    @Test
+    public void test14(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.like("email","test");       //like模糊查询
+
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
+    //测试分页
+    @Test
+    public void test15(){
+        Page<User> page = new Page<>(1,2);      //查询第一页，查询1条数据
+
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.gt("age","20");       //条件：age大于20
+
+        IPage<User> iPage = this.userMapper.selectPage(page, wrapper);
+        System.out.println("数据总条数:" + iPage.getTotal());
+        System.out.println("数据总页数:" + iPage.getPages());
+        System.out.println("当前页数:" + iPage.getCurrent());
+
+        List<User> records = iPage.getRecords();
+        for (User record : records) {
+            System.out.println(record);
+        }
     }
 }
