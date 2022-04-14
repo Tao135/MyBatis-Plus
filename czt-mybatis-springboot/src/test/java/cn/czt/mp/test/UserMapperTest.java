@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -191,5 +192,27 @@ public class UserMapperTest {
     public void test16(){
         User user = this.userMapper.findById(1L);
         System.out.println(user);
+    }
+
+    @Test
+    public void testAllEq(){
+
+        Map<String,Object> params = new HashMap<>();
+        params.put("name","张三");
+        params.put("age","21");
+        params.put("password",null);
+
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        //  SELECT id,user_name,name,age,email AS mail FROM tb_user WHERE (password IS NULL AND name = ? AND age = ?)
+        //wrapper.allEq(params);
+        //  SELECT id,user_name,name,age,email AS mail FROM tb_user WHERE (name = ? AND age = ?)
+        //wrapper.allEq(params,false);
+        //  SELECT id,user_name,name,age,email AS mail FROM tb_user WHERE (age = ?)
+        wrapper.allEq((k, v) -> (k.equals("age") || (k.equals("id"))),params);
+
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
     }
 }
