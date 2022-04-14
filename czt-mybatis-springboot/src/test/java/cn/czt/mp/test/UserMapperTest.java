@@ -185,4 +185,11 @@ public class UserMapperTest {
             System.out.println(record);
         }
     }
+
+    //测试自定义方法
+    @Test
+    public void test16(){
+        User user = this.userMapper.findById(1L);
+        System.out.println(user);
+    }
 }
