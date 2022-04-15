@@ -215,4 +215,19 @@ public class UserMapperTest {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testEq(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+
+        wrapper.eq("password","123456")         //eq等于
+                .ge("age",20)                   //ge大于等于
+                .in("name","滔5","张三");     //in字段IN(value,value)
+
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+    
 }
