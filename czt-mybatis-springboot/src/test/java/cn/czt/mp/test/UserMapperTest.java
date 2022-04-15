@@ -229,5 +229,15 @@ public class UserMapperTest {
             System.out.println(user);
         }
     }
-    
+
+    @Test
+    public void testLike(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.likeLeft("name","5");
+
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }
