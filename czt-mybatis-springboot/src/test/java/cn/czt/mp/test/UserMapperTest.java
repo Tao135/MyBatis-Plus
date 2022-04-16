@@ -252,4 +252,16 @@ public class UserMapperTest {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testOr(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        //按照年龄倒叙排序
+        wrapper.eq("name","张三").or().eq("age",22);
+
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }
