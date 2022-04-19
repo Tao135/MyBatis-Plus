@@ -8,5 +8,14 @@
 <!--    <plugins>-->
 <!--        <plugin interceptor="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor"></plugin>-->
 <!--    </plugins>-->
-
+        
+<!--    <plugins>-->
+<!--        &lt;!&ndash;性能分析插件&ndash;&gt;-->
+<!--        <plugin interceptor="com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor">-->
+<!--            &lt;!&ndash;最大执行时间，单位为100ms&ndash;&gt;-->
+<!--            <property name="maxTime" value="100"/>-->
+<!--            &lt;!&ndash;输出的SQL做格式化，默认为false&ndash;&gt;-->
+<!--            <property name="format" value="true"/>-->
+<!--        </plugin>-->
+<!--    </plugins>-->
 </configuration>
