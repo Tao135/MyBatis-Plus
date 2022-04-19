@@ -74,4 +74,18 @@ public class TestUserMapper2 {
         boolean b = user.update(null);  //全表更新
         System.out.println(b);
     }
+
+    @Test
+    public void testVersion(){
+        User user = new User();
+        user.setId(5L);         //查询条件
+        User userVersion = user.selectById();
+
+
+        user.setUserName("chen");        //更新的数据
+        user.setVersion(userVersion.getVersion());             //当前的版本信息
+
+        boolean b = user.updateById();
+        System.out.println(b);
+    }
 }

@@ -18,4 +18,11 @@
 <!--            <property name="format" value="true"/>-->
 <!--        </plugin>-->
 <!--    </plugins>-->
+    
+    <plugins>
+        <!--乐观锁插件-->
+        <plugin interceptor="com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor">
+
+        </plugin>
+    </plugins>
 </configuration>
