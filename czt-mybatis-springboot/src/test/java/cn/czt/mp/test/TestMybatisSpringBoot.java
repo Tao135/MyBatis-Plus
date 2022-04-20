@@ -24,4 +24,12 @@ public class TestMybatisSpringBoot {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testFindAll(){
+        List<User> users = this.userMapper.findAll();
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }

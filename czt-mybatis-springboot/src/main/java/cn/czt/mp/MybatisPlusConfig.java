@@ -1,5 +1,6 @@
 package cn.czt.mp;
 
+import cn.czt.mp.injectors.MySqlInjector;
 import cn.czt.mp.plugins.MyInterceptor;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
 import com.baomidou.mybatisplus.extension.parsers.BlockAttackSqlParser;
@@ -38,5 +39,14 @@ public class MybatisPlusConfig {
         sqlExplainInterceptor.setSqlParserList(list);
 
         return new SqlExplainInterceptor();
+    }
+
+    /**
+     * 注入自定义的sql注入器
+     * @return
+     */
+    @Bean
+    public MySqlInjector mySqlInjector(){
+        return new MySqlInjector();
     }
 }
