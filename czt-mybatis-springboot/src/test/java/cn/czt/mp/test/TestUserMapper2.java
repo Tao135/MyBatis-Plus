@@ -1,5 +1,6 @@
 package cn.czt.mp.test;
 
+import cn.czt.mp.enums.SexEnum;
 import cn.czt.mp.pojo.User;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.junit.Test;
@@ -16,7 +17,7 @@ public class TestUserMapper2 {
     @Test
     public void testSelectById(){
         User user = new User();
-        user.setId(1L);
+        user.setId(11L);
 
         User user1 = user.selectById(user);
         System.out.println(user1);
@@ -25,11 +26,13 @@ public class TestUserMapper2 {
     @Test
     public void testInsert(){
         User user = new User();
-        user.setUserName("tao");
+        user.setUserName("She");
         user.setPassword("1234");
         user.setAge(22);
-        user.setName("Tao");
+        user.setName("她");
         user.setMail("tao@123");
+        user.setVersion(1);
+        user.setSex(SexEnum.WOMAN);     //使用的是枚举
 
         boolean insert = user.insert();
         System.out.println("result =>" + insert);
