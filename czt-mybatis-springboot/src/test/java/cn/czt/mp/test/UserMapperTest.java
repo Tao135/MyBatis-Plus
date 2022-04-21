@@ -30,9 +30,8 @@ public class UserMapperTest {
         User user = new User();
         user.setMail("123@czt.cn");
         user.setAge(22);
-        user.setName("滔5");
+        user.setName("滔123");
         user.setUserName("Tao5");
-        user.setPassword("123456");
 
         int result = this.userMapper.insert(user);  //result是数据库受影响的行数
         System.out.println("result -> " + result);

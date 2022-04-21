@@ -69,7 +69,7 @@ public class TestUserMapper2 {
     @Test
     public void testUpdateAll(){
         User user = new User();
-        user.setName("哈哈");     //更新的数据
+        user.setName("Tao");     //更新的数据
 
         boolean b = user.update(null);  //全表更新
         System.out.println(b);

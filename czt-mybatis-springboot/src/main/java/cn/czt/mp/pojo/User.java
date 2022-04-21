@@ -15,7 +15,8 @@ public class User extends Model<User> {
     private Long id;
     private String userName;
 
-    @TableField(select = false)     //查询时不返回字段的值
+    //插入数据时，进行填充
+    @TableField(select = false,fill = FieldFill.INSERT)     //查询时不返回字段的值
     private String password;
     private String name;
     private Integer age;
